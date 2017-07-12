@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css?family=Shrikhand|Squada+One');
+
+body {
+  margin: 0 auto;
+  background-color: #004A0F;
+}
+
+#bg-container {
+  background-color: #004A0F;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  /*right: 56px;*/
+  z-index: -9999;
+  margin: 0 auto;
+}
+#table-top {
+  height: 680px;
+  width: 1360px;
+  border-bottom-right-radius: 680px;
+  border-bottom-left-radius: 680px;
+  border-bottom: 30px solid black;
+  border-left: 30px solid black;
+  border-right: 30px solid black;
+  margin: 0 auto;
+  box-shadow: 5px 20px 30px #000;
+  background-image: url("wood-grain.jpg");
+  position: relative;
+  z-index: -9998;
+}
+#wood-grain {
+  height: 660px;
+  width: 1320px;
+  border-bottom-right-radius: 660px;
+  border-bottom-left-radius: 660px;
+  background-color: #5D0A1A;
+  margin: 0 auto;
+  position: relative;
+  z-index: -9997;
+}
+.card-frame {
+  height: 140px;
+  width: 90px;
+  border: 6px solid #e5c100;
+  border-radius: 10%;
+  position: relative;
+  z-index: -9996;
+}
+
+
+
+
+#set1 {
+  left: 81%;
+  top: 35%;
+  opacity: 0.5;
+  transform: rotate(-43deg);
+}
+#set2 {
+  left: 67%;
+  top: 38%;
+  opacity: 0.5;
+  transform: rotate(-25deg);
+}
+#set3 {
+  left: 26%;
+  top: 15%;
+  opacity: 0.5;
+  transform: rotate(25deg);
+}
+#set4 {
+  left: 12%;
+  bottom: 32%;
+  opacity: 0.5;
+  transform: rotate(43deg);
+}
+#set5 {
+  left: 46%;
+  bottom: 20%;
+  opacity: 0.5;
+}
+
+
+
+
+#logo {
+  color: #e5c100;
+  font-size: 30pt;
+  position: absolute;
+  top: 15%;
+  left: 83%;
+  opacity: 0.5;
+  z-index: -9995;
+}
+#logo2 {
+  color: #e5c100;
+  font-size: 30pt;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  opacity: 0.5;
+  z-index: -9995;
+}
+#logo3 {
+  color: #e5c100;
+  font-size: 15pt;
+  position: absolute;
+  top: 13%;
+  left: 13%;
+  opacity: 0.5;
+  z-index: -9995;
+}
+#logo4 {
+  color: #e5c100;
+  font-size: 15pt;
+  position: absolute;
+  top: 13%;
+  left: 242px;
+  opacity: 0.5;
+  z-index: -9995;
+}
+#logo5 {
+  color: #e5c100;
+  font-size: 15pt;
+  position: absolute;
+  top: 13%;
+  left: 1070px;
+  opacity: 0.5;
+  z-index: -9995;
+}
+#logo6 {
+  color: #e5c100;
+  font-size: 15pt;
+  position: absolute;
+  top: 13%;
+  left: 1140px;
+  opacity: 0.5;
+  z-index: -9995;
+}
+
+
+
+#board_text_one {
+  font-family: 'Shrikhand', cursive;
+  font-size: 40pt;
+  color: #8b0f27;
+  position: absolute;
+  left: 38%;
+  bottom: 65%;
+}
+#board_text_two {
+  font-family: 'Squada One', cursive;
+  position: absolute;
+  font-size: 25pt;
+  color: #8b0f27;
+  left: 45%;
+  bottom: 60%;
+}
+#dealer_text {
+  position: relative;
+  width: 30%;
+  left: 32%;
+  bottom: 80%;
+}
+#dealer_text img {
+  opacity: 0.2;
+}
+#dealer_text_two {
+  position: relative;
+  width: 30%;
+  left: 41%;
+  bottom: 85%;
+}
+#dealer_text_two img {
+  opacity: 0.2;
+}
+
