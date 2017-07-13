@@ -203,12 +203,17 @@ body {
 }
 
 #playerHand {
-  height: 50px;
-  width: 50px;
+  height: 175px;
+  width: auto;
   position: relative;
   background-color: blue;
   bottom: 55%;
   left: 48%;
+}
+
+#playerHand img {
+  height: 100%;
+  width: auto;
 }
 
 #dealerHand {
@@ -216,6 +221,11 @@ body {
   width: 50px;
   position: relative;
   background-color: red;
-  bottom: 115%;
+  bottom: 135%;
   left: 48%;
+}
+
+#dealerHand img {
+  height: 175px;
+  width: auto;
 }

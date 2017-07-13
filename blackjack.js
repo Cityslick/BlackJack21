@@ -52,12 +52,14 @@ function cards() {
 }
 
 
-console.log(cards());
-console.log(cardStack.length);
+// console.log(cards());
+// console.log(cardStack.length);
 
 //Shuffle the cards
 
 function shuffle() {
+  cards();
+
   for(let i = 0; i < cardStack.length; i++) {
       let rando = cardStack[Math.floor(Math.random() * cardStack.length)];
       let shuffled = {
@@ -71,11 +73,26 @@ function shuffle() {
     return shuffledStack;
   }
 
-console.log(shuffle());
-console.log(shuffledStack[4]);
+// console.log(shuffle());
+
+let imgTag = document.createElement('img');
+let showPlayerCard = document.getElementById('playerHand');
+let showDealerCard = document.getElementById('dealerHand');
+let pickACard = shuffledStack.shift();
+let playerCards = [];
+let dealerCards = [];
 
 
 
+function deal() {
+  shuffle();
+  let card = shuffledStack.shift();
+  let imgTag = document.createElement('img');
+  imgTag.src = card.image;
+  showPlayerCard.append(imgTag);
+}
+
+deal();
 
 
 //Appending images?!?!?!?!
