@@ -9,7 +9,7 @@ let player = [];
 
 
 
-//Create an array of sequential cards and suits to get 52 cards
+//Create an array of objects to get 52 cards with suits and values
 
 function cards() {
 
@@ -52,9 +52,6 @@ function cards() {
 }
 
 
-// console.log(cards());
-// console.log(cardStack.length);
-
 //Shuffle the cards
 
 function shuffle() {
@@ -86,14 +83,33 @@ let dealerCards = [];
 
 function deal() {
   shuffle();
+  dealPlayer();
+  dealDealer();
+  dealPlayer();
+  dealDealer();
+}
+
+function dealPlayer() {
   let card = shuffledStack.shift();
+  shuffledStack.splice(shuffledStack.indexOf(card), 1);
+  playerCards.push(card);
   let imgTag = document.createElement('img');
   imgTag.src = card.image;
   showPlayerCard.append(imgTag);
 }
 
-deal();
+function dealDealer() {
+  let card = shuffledStack.shift();
+  shuffledStack.splice(shuffledStack.indexOf(card), 1);
+  dealerCards.push(card);
+  let imgTag = document.createElement('img');
+  imgTag.src = card.image;
+  showDealerCard.append(imgTag);
+}
 
+deal();
+console.log(playerCards);
+console.log(dealerCards);
 
 //Appending images?!?!?!?!
 // let displayCards = ['Cards/ace_of_diamonds.png'];

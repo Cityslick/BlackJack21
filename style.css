@@ -199,16 +199,15 @@ body {
 
 
 .layer {
-  z-index: 9980;
+  z-index: -9980;
 }
 
 #playerHand {
   height: 175px;
   width: auto;
   position: relative;
-  background-color: blue;
   bottom: 55%;
-  left: 48%;
+  left: 38%;
 }
 
 #playerHand img {
@@ -217,15 +216,14 @@ body {
 }
 
 #dealerHand {
-  height: 50px;
-  width: 50px;
+  height: 175px;
+  width: auto;
   position: relative;
-  background-color: red;
-  bottom: 135%;
-  left: 48%;
+  bottom: 140%;
+  left: 38%;
 }
 
 #dealerHand img {
-  height: 175px;
+  height: 100%;
   width: auto;
 }
