@@ -11,7 +11,7 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
-  right: 68px;
+  /*right: 68px;*/
   z-index: -9999;
   margin: 0 auto;
 }
@@ -200,4 +200,22 @@ body {
 
 .layer {
   z-index: 9980;
+}
+
+#playerHand {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  background-color: blue;
+  bottom: 55%;
+  left: 48%;
+}
+
+#dealerHand {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  background-color: red;
+  bottom: 115%;
+  left: 48%;
 }

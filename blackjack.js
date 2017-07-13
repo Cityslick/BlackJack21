@@ -1,6 +1,6 @@
 
-let cardValue = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
-let cardSuit = ['Spades', 'Hearts', 'Clubs', 'Diamonds'];
+let cardValue = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king'];
+let cardSuit = ['spades', 'hearts', 'clubs', 'diamonds'];
 let cardStack = [];
 let shuffledStack = [];
 let dealer = [];
@@ -17,7 +17,8 @@ function cards() {
     for (let j = 0; j < cardSuit.length; j++) {
       let deck = {
         value: cardValue[i],
-        suit: cardSuit[j]
+        suit: cardSuit[j],
+        image: `Cards/${cardValue[i]}_of_${cardSuit[j]}.png`,
       };
       cardStack.push(deck);
     }
@@ -26,7 +27,7 @@ function cards() {
 
   for(let i = 0; i < cardStack.length; i++) {
     switch(cardStack[i].value) {
-      case 'Ace':
+      case 'ace':
         cardStack[i].points = 1;
         break;
       case 2:
@@ -40,9 +41,9 @@ function cards() {
       case 10:
         cardStack[i].points = cardStack[i].value;
         break;
-      case 'Jack':
-      case 'King':
-      case 'Queen':
+      case 'jack':
+      case 'king':
+      case 'queen':
         cardStack[i].points = 10;
         break;
     }
@@ -61,7 +62,9 @@ function shuffle() {
       let rando = cardStack[Math.floor(Math.random() * cardStack.length)];
       let shuffled = {
         value: rando.value,
-        suit: rando.suit
+        suit: rando.suit,
+        points: rando.points,
+        image: rando.image,
       };
       shuffledStack.push(shuffled);
     }
@@ -74,9 +77,12 @@ console.log(shuffledStack[4]);
 
 
 
+
 //Appending images?!?!?!?!
-let displayCards = ['wood-grain.jpg'];
-let showCard = document.getElementById('logo8');
-let imgTag = document.createElement('img');
-imgTag.src = displayCards[0];
-showCard.append(imgTag);
+// let displayCards = ['Cards/ace_of_diamonds.png'];
+// let showCard = document.getElementById('logo8');
+// let imgTag = document.createElement('img');
+// imgTag.src = displayCards[0];
+// showCard.append(imgTag);
+
+
