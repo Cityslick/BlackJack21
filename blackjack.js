@@ -66,6 +66,12 @@ function shuffle() {
         image: rando.image,
       };
       shuffledStack.push(shuffled);
+
+      for (j = 0; j < shuffledStack.length; j++) {
+        if (rando === shuffledStack[j]) {
+          --i;
+        }
+      }
     }
     return shuffledStack;
   }
@@ -74,42 +80,66 @@ function shuffle() {
 
 let imgTag = document.createElement('img');
 let showPlayerCard = document.getElementById('playerHand');
+let showPlayerCard2 = document.getElementById('playerHand2');
 let showDealerCard = document.getElementById('dealerHand');
+let showDealerCard2 = document.getElementById('dealerHand2');
 let pickACard = shuffledStack.shift();
 let playerCards = [];
 let dealerCards = [];
 
 
+function spliced(shuffledStack) {
+  shuffle();
+  shuffledStack = shuffledStack.splice(0, 4);
+  return shuffledStack;
+}
+let card = spliced(shuffledStack);
+
+console.log(card);
+console.log(card.length);
 
 function deal() {
   shuffle();
-  dealPlayer();
-  dealDealer();
-  dealPlayer();
-  dealDealer();
-}
-
-function dealPlayer() {
-  let card = shuffledStack.shift();
-  shuffledStack.splice(shuffledStack.indexOf(card), 1);
-  playerCards.push(card);
   let imgTag = document.createElement('img');
-  imgTag.src = card.image;
-  showPlayerCard.append(imgTag);
-}
+  let imgTag2 = document.createElement('img');
+  let imgTag3 = document.createElement('img');
+  let imgTag4 = document.createElement('img');
 
-function dealDealer() {
-  let card = shuffledStack.shift();
-  shuffledStack.splice(shuffledStack.indexOf(card), 1);
-  dealerCards.push(card);
-  let imgTag = document.createElement('img');
-  imgTag.src = card.image;
-  showDealerCard.append(imgTag);
-}
+  for(let i = 0; i < card.length; i++) {
+    if (i % 2 === 0) {
+      playerCards.push(card[i]);
+    } else {
+      dealerCards.push(card[i]);
+    }
+  }
 
-deal();
+  for(let i = 0; i < playerCards.length; i++) {
+    if (i % 2 === 0) {
+      imgTag.src = playerCards[i].image;
+      showPlayerCard.append(imgTag);
+    } else {
+      imgTag2.src = playerCards[i].image;
+      showPlayerCard2.append(imgTag2);
+    }
+  }
+
+  for(let i = 0; i < dealerCards.length; i++) {
+    if (i % 2 === 0) {
+      imgTag3.src = dealerCards[i].image;
+      showDealerCard.append(imgTag3);
+    } else {
+      imgTag4.src = dealerCards[i].image;
+      showDealerCard2.append(imgTag4);
+    }
+  }
+
+}
+console.log(card[1]);
 console.log(playerCards);
 console.log(dealerCards);
+deal();
+
+
 
 //Appending images?!?!?!?!
 // let displayCards = ['Cards/ace_of_diamonds.png'];

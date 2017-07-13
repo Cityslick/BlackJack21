@@ -202,28 +202,40 @@ body {
   z-index: -9980;
 }
 
-#playerHand {
-  height: 175px;
-  width: auto;
+#playerHandContainer {
   position: relative;
   bottom: 55%;
   left: 38%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 
-#playerHand img {
+.handOfPlayer {
+  height: 175px;
+  width: auto;
+}
+
+.handOfPlayer img {
   height: 100%;
   width: auto;
 }
 
-#dealerHand {
-  height: 175px;
-  width: auto;
+#dealerHandContainer {
   position: relative;
-  bottom: 140%;
+  bottom: 145%;
   left: 38%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 
-#dealerHand img {
+.handOfDealer {
+  height: 175px;
+  width: auto;
+}
+
+.handOfDealer img {
   height: 100%;
   width: auto;
 }
