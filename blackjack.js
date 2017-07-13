@@ -95,8 +95,6 @@ function spliced(shuffledStack) {
 }
 let card = spliced(shuffledStack);
 
-console.log(card);
-console.log(card.length);
 
 function deal() {
   shuffle();
@@ -134,10 +132,8 @@ function deal() {
   }
 
 }
-console.log(card[1]);
-console.log(playerCards);
-console.log(dealerCards);
-deal();
+
+
 
 
 

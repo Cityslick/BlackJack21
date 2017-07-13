@@ -4,6 +4,8 @@ body {
   margin: 0 auto;
   background-color: #004A0F;
   overflow: hidden;
+  position: relative;
+  z-index: -99999;
 }
 
 #bg-container {
@@ -238,4 +240,13 @@ body {
 .handOfDealer img {
   height: 100%;
   width: auto;
+}
+
+button {
+  background-color: red;
+  color: white;
+  height: 50px;
+  width: 60px;
+  position: relative;
+  left: 80%;
 }
