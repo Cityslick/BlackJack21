@@ -221,6 +221,7 @@ body {
 .handOfPlayer img {
   height: 100%;
   width: auto;
+  margin: 5px;
 }
 
 #dealerHandContainer {
@@ -235,6 +236,7 @@ body {
 .handOfDealer {
   height: 175px;
   width: auto;
+  margin: 5px;
 }
 
 .handOfDealer img {
@@ -249,4 +251,9 @@ button {
   width: 60px;
   position: relative;
   left: 80%;
+}
+
+h1 {
+  font-size: 18pt;
+  color: yellow;
 }

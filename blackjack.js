@@ -76,7 +76,6 @@ function shuffle() {
     return shuffledStack;
   }
 
-// console.log(shuffle());
 
 let imgTag = document.createElement('img');
 let showPlayerCard = document.getElementById('playerHand');
@@ -96,6 +95,7 @@ function spliced(shuffledStack) {
 let card = spliced(shuffledStack);
 
 
+//First deal out of 4 cards
 function deal() {
   shuffle();
   let imgTag = document.createElement('img');
@@ -130,18 +130,51 @@ function deal() {
       showDealerCard2.append(imgTag4);
     }
   }
-
+playerCount();
+dealerCount();
 }
 
 
+//Calculate Player and Dealer total
+function playerCount() {
+  let count = 0;
+  if(playerCards.length > 0) {
+    for(let i = 0; i < playerCards.length; i++) {
+      count += playerCards[i].points;
+    }
+  }
+  let display = document.getElementById('playerTotal');
+  display.innerText = `Player Cards Value: ${count}`;
+}
 
+function dealerCount() {
+  let count = 0;
+  if(dealerCards.length > 0) {
+    for(let i = 0; i < dealerCards.length; i++) {
+      count += dealerCards[i].points;
+    }
+  }
+  let display = document.getElementById('dealerTotal');
+  display.innerText = `Dealer Cards Value: ${count}`;
+}
 
+function restOfDeck(shuffledStack) {
+  shuffledStack = shuffledStack.splice(0, 1);
+  return shuffledStack;
+}
+let newCards = restOfDeck(shuffledStack);
+console.log(newCards);
 
-//Appending images?!?!?!?!
-// let displayCards = ['Cards/ace_of_diamonds.png'];
-// let showCard = document.getElementById('logo8');
-// let imgTag = document.createElement('img');
-// imgTag.src = displayCards[0];
-// showCard.append(imgTag);
+let n = 0;
+
+function hitMe() {
+  let newImgTag = document.createElement('img');
+  newImgTag.src = newCards[n].image;
+  playerCards.push(newCards[n]);
+  showPlayerCard2.append(newImgTag)
+  playerCount();
+  restOfDeck(shuffledStack);
+}
+
 
 
