@@ -1,6 +1,6 @@
 
-let cardValue = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king'];
-let cardSuit = ['spades', 'hearts', 'clubs', 'diamonds'];
+const cardValue = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king'];
+const cardSuit = ['spades', 'hearts', 'clubs', 'diamonds'];
 let cardStack = [];
 let dealer = [];
 let player = [];
@@ -87,7 +87,7 @@ function dealPlayer() {
     img.src = card.image;
     showPlayerCard.append(img);
     player.push(card);
-    playerCount();
+    playerCardTotal();
   }
 }
 
@@ -99,40 +99,45 @@ function dealDealer() {
     img.src = card.image;
     showDealerCard.append(img);
     dealer.push(card);
-    dealerCount();
+    dealerCardTotal();
   }
 }
 
 // Calculate player total points
 
-function playerCount() {
+function playerCardTotal() {
   var playerCount = 0;
   if (player.length > 0) {
     for (let i = 0; i < player.length; i++) {
       if (player[i].value === 'ace' && player.length > 2) {
-        player[i].value = 1;
+        player[i].points = 1;
         playerCount += player[i].points;
-      }
+      } else {
       playerCount += player[i].points;
     }
   }
   let display = document.getElementById('playerTotal');
-  display.innerText = `Player Cards Value: ${count}`;
+  display.innerText = `Player Cards Value: ${playerCount}`;
+  }
 }
 
-function dealerCount() {
+
+
+function dealerCardTotal() {
   var dealerCount = 0;
   if (dealer.length > 0) {
     for (let i = 0; i < dealer.length; i++) {
       if (dealer[i].value === 'ace' && dealer.length > 2) {
-        dealer[i].value = 1;
+        dealer[i].points = 1;
         dealerCount += dealer[i].points;
       }
       dealerCount += dealer[i].points;
     }
+  } else {
+    dealerCount = 0;
   }
   let display = document.getElementById('dealerTotal');
-  display.innerText = `Dealer Cards Value: ${count}`;
+  display.innerText = `Dealer Cards Value: ${dealerCount}`;
 }
 
 // Deal hand(s) to start game
@@ -157,15 +162,38 @@ function startDeal() {
 // Player decides to take a "hit"
 function hit() {
   dealPlayer();
-  playerCount();
 }
 
+
+// Player decides to "stay"
 function stay() {
   dealDealer();
-
-  dealerCount();
 }
 
+
+// Check for win
+function checkWinner() {
+
+ if (playerCount > 21) {
+
+    alert('hello!');
+    console.log('BUSTED!');
+    playerCount = 0;
+    dealerCount = 0;
+    player = [];
+    dealer = [];
+
+    setTimeout(function() {
+    cards();
+    shuffle(cardStack);
+    showPlayerCard.innerHTML = '';
+    showDealerCard.innerHTML = '';
+    dealingHands = true;
+    }, 2000);
+  } else if (playerCount == 21) {
+    console.log('WINNER!');
+  }
+}
 
 
 
