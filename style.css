@@ -207,10 +207,10 @@ body {
 #playerHandContainer {
   position: relative;
   bottom: 55%;
-  left: 38%;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
+  align-items: center;
 }
 
 .handOfPlayer {
@@ -227,21 +227,21 @@ body {
 #dealerHandContainer {
   position: relative;
   bottom: 145%;
-  left: 38%;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
+  align-items: center;
 }
 
 .handOfDealer {
   height: 175px;
   width: auto;
-  margin: 5px;
 }
 
 .handOfDealer img {
   height: 100%;
   width: auto;
+  margin: 5px;
 }
 
 button {

@@ -6,6 +6,7 @@ let dealer = [];
 let player = [];
 let showPlayerCard = document.getElementById('playerHand');
 let showDealerCard = document.getElementById('dealerHand');
+let dealingHands = true;
 
 
 
@@ -86,10 +87,11 @@ function dealPlayer() {
     img.src = card.image;
     showPlayerCard.append(img);
     player.push(card);
-    return card;
+    playerCount();
   }
 }
 
+// Deal a dealer card and append to its HTML elem > show on screen
 function dealDealer() {
   if (cardStack.length > 0) {
     let card = cardStack.shift();
@@ -97,14 +99,58 @@ function dealDealer() {
     img.src = card.image;
     showDealerCard.append(img);
     dealer.push(card);
+    dealerCount();
   }
 }
 
+// Calculate player total points
 
-console.log(player); //logging player array
-console.log(cardStack); //logging cardstack - should have 51 cards total
-dealPlayer();
-dealDealer();
+function playerCount() {
+  let count = 0;
+  if (player.length > 0) {
+    for (let i = 0; i < player.length; i++) {
+      count += player[i].points;
+    }
+  }
+  let display = document.getElementById('playerTotal');
+  display.innerText = `Player Cards Value: ${count}`;
+}
+
+function dealerCount() {
+  let count = 0;
+  if (dealer.length > 0) {
+    for (let i = 0; i < dealer.length; i++) {
+      count += dealer[i].points;
+    }
+  }
+  let display = document.getElementById('dealerTotal');
+  display.innerText = `Dealer Cards Value: ${count}`;
+}
+
+// Deal hand(s) to start game
+function startDeal() {
+  if (dealingHands) {
+    dealPlayer();
+    setTimeout(function() {
+      dealDealer();
+        setTimeout(function() {
+          dealPlayer();
+            setTimeout(function() {
+              dealDealer();
+            }, 800);
+        }, 800);
+    }, 800);
+    dealingHands = false;
+  } else {
+    return;
+  }
+}
+
+// Player decides to take a "hit"
+function hit() {
+  dealPlayer();
+  playerCount();
+}
 
 
 
