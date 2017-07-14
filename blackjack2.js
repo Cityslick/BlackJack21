@@ -30,7 +30,7 @@ function cards() {
   for(let i = 0; i < cardStack.length; i++) {
     switch(cardStack[i].value) {
       case 'ace':
-        cardStack[i].points = 1;
+        cardStack[i].points = 11;
         break;
       case 2:
       case 3:
@@ -106,10 +106,14 @@ function dealDealer() {
 // Calculate player total points
 
 function playerCount() {
-  let count = 0;
+  var playerCount = 0;
   if (player.length > 0) {
     for (let i = 0; i < player.length; i++) {
-      count += player[i].points;
+      if (player[i].value === 'ace' && player.length > 2) {
+        player[i].value = 1;
+        playerCount += player[i].points;
+      }
+      playerCount += player[i].points;
     }
   }
   let display = document.getElementById('playerTotal');
@@ -117,10 +121,14 @@ function playerCount() {
 }
 
 function dealerCount() {
-  let count = 0;
+  var dealerCount = 0;
   if (dealer.length > 0) {
     for (let i = 0; i < dealer.length; i++) {
-      count += dealer[i].points;
+      if (dealer[i].value === 'ace' && dealer.length > 2) {
+        dealer[i].value = 1;
+        dealerCount += dealer[i].points;
+      }
+      dealerCount += dealer[i].points;
     }
   }
   let display = document.getElementById('dealerTotal');
@@ -150,6 +158,12 @@ function startDeal() {
 function hit() {
   dealPlayer();
   playerCount();
+}
+
+function stay() {
+  dealDealer();
+
+  dealerCount();
 }
 
 
