@@ -7,6 +7,8 @@ let player = [];
 let showPlayerCard = document.getElementById('playerHand');
 let showDealerCard = document.getElementById('dealerHand');
 let dealingHands = true;
+let playerCount;
+
 
 
 
@@ -106,7 +108,7 @@ function dealDealer() {
 // Calculate player total points
 
 function playerCardTotal() {
-  var playerCount = 0;
+  let playerCount = 0;
   if (player.length > 0) {
     for (let i = 0; i < player.length; i++) {
       if (player[i].value === 'ace' && player.length > 2) {
@@ -119,6 +121,19 @@ function playerCardTotal() {
   let display = document.getElementById('playerTotal');
   display.innerText = `Player Cards Value: ${playerCount}`;
   }
+
+
+   if (playerCount > 21) {
+      setTimeout(function() {
+      alert('Busted!');
+      }, 800);
+    } else if (playerCount == 21) {
+      console.log('WINNER!');
+      alert('winner!');
+    } else {
+      return;
+    }
+
 }
 
 
@@ -172,28 +187,18 @@ function stay() {
 
 
 // Check for win
-function checkWinner() {
+// function checkWinner() {
 
- if (playerCount > 21) {
-
-    alert('hello!');
-    console.log('BUSTED!');
-    playerCount = 0;
-    dealerCount = 0;
-    player = [];
-    dealer = [];
-
-    setTimeout(function() {
-    cards();
-    shuffle(cardStack);
-    showPlayerCard.innerHTML = '';
-    showDealerCard.innerHTML = '';
-    dealingHands = true;
-    }, 2000);
-  } else if (playerCount == 21) {
-    console.log('WINNER!');
-  }
-}
+//  if (playerCount > 21) {
+//     alert('Busted!');
+//     console.log('BUSTED!');
+//   } else if (playerCount == 21) {
+//     console.log('WINNER!');
+//     alert('winner!');
+//   } else {
+//     return;
+//   }
+// }
 
 
 
