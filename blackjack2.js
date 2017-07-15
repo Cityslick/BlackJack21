@@ -143,18 +143,30 @@ function cardTotals() {
   }
 
 // If player surrenders their hand
-  if (surrenderHand) {
-    alert('YOU LOSE!');
-    gameReset();
-  }
-// Looks for push on first deal
+  // if (surrenderHand) {
+  //   alert('YOU LOSE!');
+  //   gameReset();
+  //   surrenderDisplay.style.display = 'none';
+  // }
+
+// Looks for winner on first deal
   if (dealingHands) {
     compare();
   }
 
 // When player chooses to stand
+// Compare Dealer hand to Player hand when Player "stands"
   if (playerStand) {
-    compareStand();
+    if (dealerCount < 17) {
+        setTimeout(function() {
+          console.log('dealer adds a card!');
+          dealDealer();
+          cardTotals();
+        }, 800);
+     } else {
+      compare();
+     }
+
   }
 
 // When player chooses to hit
@@ -163,60 +175,41 @@ function cardTotals() {
       console.log('HIT is TRUE!');
   }
 
-  function makeFalse() {
-        hitCard = false;
-        dealingHands = false;
-        playerStand = false;
-  }
 
-// Compare Dealer hand to Player hand when Player "stands"
-  function compareStand() {
-      if (dealerCount < 17) {
-        setTimeout(function() {
-          dealDealer();
-          cardTotals();
-          compare();
-        }, 2000);
-      } else if (dealerCount < 21 && dealerCount < playerCount && dealerCount >= 17) {
-          alert('YOU WIN!');
-          gameReset();
-          makeFalse();
-      } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
-        alert('YOU LOSE!');
-        gameReset();
-        makeFalse();
-      }
-  }
 
 // Compare Dealer hand to Player hand excluding Player "stand"
   function compare() {
       setTimeout(function() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
           alert('PUSH!');
-          makeFalse();
           gameReset();
       } else if (playerCount == 21 && dealerCount != 21) {
           alert('YOU WIN!');
-          makeFalse();
           gameReset();
       } else if (playerCount > 21) {
           alert('BUSTED, YOU LOSE!');
-          makeFalse();
           gameReset();
       } else if (dealerCount == 17 && dealerCount < playerCount && playerCount <= 21) {
           alert('YOU WIN!');
-          makeFalse();
           gameReset();
       } else if (dealerCount == 21 && playerCount <= 21) {
           alert('YOU LOSE!');
-          makeFalse();
           gameReset();
       } else if (dealerCount > 21) {
         alert('YOU WIN!');
         gameReset();
-      } else if (dealerCount >= 17 && dealerCount < 21 && playerCount < 17) {
+      } else if (dealerCount >= 17 && dealerCount < 21 && playerCount < 18) {
           surrenderDisplay.style.display = 'block';
           return;
+      } else if (dealerCount < 21 && dealerCount < playerCount && dealerCount >= 17) {
+          alert('YOU WIN!');
+          gameReset();
+      } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
+          alert('YOU LOSE!');
+          gameReset();
+      } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount < playerCount) {
+          alert('YOU WIN!');
+          gameReset();
       } else {
         return;
       }
@@ -224,17 +217,24 @@ function cardTotals() {
   }
 
 function gameReset() {
-  playerCount = 0;
-  dealerCount = 0;
-  player = [];
-  dealer = [];
-  setTimeout(function() {
-  playerDisplay.innerText = `Player Cards Value: ${playerCount}`;
-  dealerDisplay.innerText = `Dealer Cards Value: ${dealerCount}`;
-  showDealerCard.innerHTML = '';
-  showPlayerCard.innerHTML = '';
-  }, 2000);
-}
+    playerCount = 0;
+    dealerCount = 0;
+    player = [];
+    dealer = [];
+    setTimeout(function() {
+    playerDisplay.innerText = `Player Cards Value: ${playerCount}`;
+    dealerDisplay.innerText = `Dealer Cards Value: ${dealerCount}`;
+    showDealerCard.innerHTML = '';
+    showPlayerCard.innerHTML = '';
+    }, 2000);
+
+    function makeFalse() {
+          hitCard = false;
+          dealingHands = false;
+          playerStand = false;
+          surrenderHand = false;
+    }
+  }
 
 }
 
@@ -270,11 +270,11 @@ function stay() {
   cardTotals();
 }
 
-// Player surrenders hand
-function surrender() {
-  surrenderHand = true;
-  cardTotals();
-}
+// // Player surrenders hand
+// function surrender() {
+//   surrenderHand = true;
+//   cardTotals();
+// }
 
 
 
