@@ -253,6 +253,11 @@ button {
   left: 80%;
 }
 
+#surrended {
+  display: none;
+  width: 100px;
+}
+
 h1 {
   font-size: 18pt;
   color: yellow;
