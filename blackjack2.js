@@ -7,8 +7,9 @@ let player = [];
 let showPlayerCard = document.getElementById('playerHand');
 let showDealerCard = document.getElementById('dealerHand');
 let dealingHands = true;
+let playerStand = false;
 let playerCount;
-
+let dealerCount;
 
 
 
@@ -89,7 +90,7 @@ function dealPlayer() {
     img.src = card.image;
     showPlayerCard.append(img);
     player.push(card);
-    playerCardTotal();
+    cardTotals();
   }
 }
 
@@ -101,45 +102,15 @@ function dealDealer() {
     img.src = card.image;
     showDealerCard.append(img);
     dealer.push(card);
-    dealerCardTotal();
+    cardTotals();
   }
 }
 
-// Calculate player total points
 
-function playerCardTotal() {
-  let playerCount = 0;
-  if (player.length > 0) {
-    for (let i = 0; i < player.length; i++) {
-      if (player[i].value === 'ace' && player.length > 2) {
-        player[i].points = 1;
-        playerCount += player[i].points;
-      } else {
-      playerCount += player[i].points;
-    }
-  }
-  let display = document.getElementById('playerTotal');
-  display.innerText = `Player Cards Value: ${playerCount}`;
-  }
+function cardTotals() {
 
-
-   if (playerCount > 21) {
-      setTimeout(function() {
-      alert('Busted!');
-      }, 800);
-    } else if (playerCount == 21) {
-      console.log('WINNER!');
-      alert('winner!');
-    } else {
-      return;
-    }
-
-}
-
-
-
-function dealerCardTotal() {
-  var dealerCount = 0;
+// Dealer Count
+  let dealerCount = 0;
   if (dealer.length > 0) {
     for (let i = 0; i < dealer.length; i++) {
       if (dealer[i].value === 'ace' && dealer.length > 2) {
@@ -151,9 +122,76 @@ function dealerCardTotal() {
   } else {
     dealerCount = 0;
   }
-  let display = document.getElementById('dealerTotal');
-  display.innerText = `Dealer Cards Value: ${dealerCount}`;
+  let dealerDisplay = document.getElementById('dealerTotal');
+  dealerDisplay.innerText = `Dealer Cards Value: ${dealerCount}`;
+
+// Player Count
+  let playerCount = 0;
+  if (player.length > 0) {
+    for (let i = 0; i < player.length; i++) {
+      if (player[i].value === 'ace' && player.length > 2) {
+        player[i].points = 1;
+        playerCount += player[i].points;
+      } else {
+      playerCount += player[i].points;
+      }
+    }
+  let playerDisplay = document.getElementById('playerTotal');
+  playerDisplay.innerText = `Player Cards Value: ${playerCount}`;
+  }
+
+
+// When Player chooses to "stay" on their hand
+  if(playerStand) {
+      setTimeout(function() {
+        if (dealerCount === playerCount) {
+          alert("PUSH!");
+          return;
+        }
+          else if (dealerCount == 17) {
+          compare();
+        } else if (dealerCount < 17 && hitStay){
+          dealDealer();
+          compare();
+        } else {
+          compare();
+        }
+      }, 800);
+  }
+
+// Compare Dealer hand to Player hand
+  function compare() {
+    if (dealerCount == 21 && dealerCount > playerCount) {
+      alert('You Lose!');
+      return;
+    } else if (dealerCount > 21 && playerCount <= 21) {
+      alert('You Won!');
+      return; //reset function goes here
+    } else if (dealerCount > playerCount && dealerCount < 21 && hitStay) {
+      alert('You Lose!');
+      return;
+    } else {
+      return;
+    }
+  }
+
+// Player Win Conditions
+if (playerCount > 21) {
+      setTimeout(function() {
+      alert('Busted!');
+      }, 800);
+      return; // reset function goes here;
+  } else if (playerCount == 21) {
+      stay();
+  } else {
+    return;
+  }
+
+
+
+
 }
+
 
 // Deal hand(s) to start game
 function startDeal() {
@@ -165,6 +203,8 @@ function startDeal() {
           dealPlayer();
             setTimeout(function() {
               dealDealer();
+              playerStand = true;
+              cardTotals();
             }, 800);
         }, 800);
     }, 800);
@@ -174,31 +214,24 @@ function startDeal() {
   }
 }
 
+let hitStay = false;
 // Player decides to take a "hit"
 function hit() {
   dealPlayer();
+  hitStay = true;
 }
 
 
 // Player decides to "stay"
 function stay() {
-  dealDealer();
+  setTimeout(function() {
+    dealDealer();
+    playerStand = true;
+    hitStay = true;
+  }, 800);
 }
 
 
-// Check for win
-// function checkWinner() {
-
-//  if (playerCount > 21) {
-//     alert('Busted!');
-//     console.log('BUSTED!');
-//   } else if (playerCount == 21) {
-//     console.log('WINNER!');
-//     alert('winner!');
-//   } else {
-//     return;
-//   }
-// }
 
 
 
