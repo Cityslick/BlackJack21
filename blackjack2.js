@@ -87,6 +87,7 @@ console.log(cardStack) //logging shuffled stack to console
 // Deal a player card and append to HTML element > show on screen
 function dealPlayer() {
   if (cardStack.length > 0) {
+    cardFlip.play();
     let card = cardStack.shift();
     let img = document.createElement('img');
     img.src = card.image;
@@ -97,6 +98,7 @@ function dealPlayer() {
 
 // Deal a dealer card and append to its HTML elem > show on screen
 function dealDealer() {
+  cardFlip.play();
   if (cardStack.length > 0) {
     let card = cardStack.shift();
     let img = document.createElement('img');
@@ -106,7 +108,9 @@ function dealDealer() {
   }
 }
 
+//Second dealer card that is face-down
 function secondDealerCard() {
+  cardFlip.play();
   let img = document.createElement('img');
   img.src = 'Cards/cardBack_red.png';
   img.points = 0;
@@ -116,17 +120,11 @@ function secondDealerCard() {
   console.log(dealer);
 }
 
+//Remove face-down card before dealer takes a card
 function removeSecondCard() {
   let dealtHand = document.getElementById('dealerHand');
   dealtHand.removeChild(dealtHand.childNodes[1]);
 }
-
-
-
-// When player chooses to stand
-// Compare Dealer hand to Player hand when Player "stands"
-
-
 
 
 
@@ -166,9 +164,7 @@ function removeSecondCard() {
   playerDisplay.innerText = `Player Cards Value: ${playerCount}`;
   }
 
-
-  console.log('compare function is run');
-
+// Winning conditions
       setTimeout(function() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
           push();
@@ -209,6 +205,7 @@ function removeSecondCard() {
     }, 800);
     console.log(playerCount);
 
+// Reset game after playing a round
   function gameReset() {
     playerCount = 0;
     dealerCount = 0;
@@ -232,12 +229,10 @@ function removeSecondCard() {
       play[i].style.display = "none";
     }
 
-  console.log('reset function is run');
-  console.log(hitCard);
-  console.log(playerStand);
+
   }
 
-
+// If player "stays", dealer then...
 if (playerStand) {
     console.log(playerStand);
     if (dealerCount < 17) {
@@ -313,6 +308,7 @@ function youWin() {
   showWinner.innerText = 'YOU WIN!';
   cashStart = (addedToPot * 2) + cashStart;
   bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  winner.play();
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
@@ -324,6 +320,7 @@ function youWin() {
 function youLose() {
   showWinner.style.display = 'block';
   showWinner.innerText = 'YOU LOSE!';
+  loser.play();
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
@@ -334,7 +331,8 @@ function youLose() {
 
 function youBusted() {
   showWinner.style.display = 'block';
-  showWinner.innerText = 'BUSTED! YOU LOSE!';
+  showWinner.innerText = 'BUSTED!!!';
+  loser.play();
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
@@ -348,6 +346,7 @@ function push() {
   showWinner.innerText = 'PUSH!';
   cashStart = cashStart + addedToPot;
   bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  loser.play();
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
@@ -361,24 +360,28 @@ function push() {
 
 function clickHere() {
   bet100.onclick = function() {
+    bettor.play();
     cashStart = cashStart - 100;
     bankroll.innerHTML = `BANKROLL: $ ${cashStart}`;
     addedToPot += 100;
     pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet250.onclick = function() {
+    bettor.play();
     cashStart = cashStart - 250;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
     addedToPot += 250;
     pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet500.onclick = function() {
+    bettor.play();
     cashStart = cashStart - 500;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
     addedToPot += 500;
     pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet1000.onclick = function() {
+    bettor.play();
     cashStart = cashStart - 1000;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
     addedToPot += 1000;
@@ -394,9 +397,15 @@ function clickHere() {
 
 }
 
-
 clickHere();
 
+
+// Game sounds
+
+let winner = new Audio('Audio/win-cheer.wav');
+let loser = new Audio('Audio/crowd-loser.wav');
+let bettor = new Audio('Audio/betting-chip.wav');
+let cardFlip = new Audio('Audio/card-flip.wav');
 
 
 
