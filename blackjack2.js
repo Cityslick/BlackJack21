@@ -8,7 +8,7 @@ let showPlayerCard = document.getElementById('playerHand');
 let showDealerCard = document.getElementById('dealerHand');
 let hitCard = false;
 let dealingHands = false;
-let playerStand = false;
+var playerStand = false;
 let surrenderHand = false;
 let playerCount;
 let dealerCount;
@@ -137,7 +137,6 @@ function removeSecondCard() {
   let dealerDisplay = document.getElementById('dealerTotal');
   let playerDisplay = document.getElementById('playerTotal');
   let surrenderDisplay = document.getElementById('surrended');
-  let stopHit = false;
 // Dealer Count
   let dealerCount = 0;
   if (dealer.length > 0) {
@@ -174,7 +173,7 @@ function removeSecondCard() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
           alert('PUSH!');
           gameReset();
-      } else if (playerCount == 21 && dealerCount != 21) {
+      } else if (playerCount == 21) {
           alert('YOU WIN!');
           gameReset();
       } else if (playerCount > 21) {
@@ -189,15 +188,12 @@ function removeSecondCard() {
       } else if (dealerCount > 21) {
         alert('YOU WIN!');
         gameReset();
-      } else if (dealerCount >= 17 && dealerCount < 21 && playerCount < 18) {
-          surrenderDisplay.style.display = 'block';
-          return;
       } else if (dealerCount < 21 && dealerCount < playerCount && dealerCount >= 17) {
           alert('YOU WIN!');
           gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
-          alert('YOU LOSE!');
-          stopHit = true;
+          alert('YOU LOSE! this should work everytime');
+
           gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount < playerCount) {
           alert('YOU WIN!');
@@ -235,7 +231,7 @@ function removeSecondCard() {
 
 if (playerStand) {
     console.log(playerStand);
-    if (dealerCount <= 21 && stopHit === false) {
+    if (dealerCount < 17 ) {
         setTimeout(function() {
           console.log('dealer adds a card!');
           dealDealer();
