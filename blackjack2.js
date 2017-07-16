@@ -106,8 +106,20 @@ function dealDealer() {
   }
 }
 
+function secondDealerCard() {
+  let img = document.createElement('img');
+  img.src = 'Cards/cardBack_red.png';
+  img.points = 0;
+  let dealerDisplay = document.getElementById('playerTotal');
+  showDealerCard.append(img);
+  dealer.push(img);
+  console.log(dealer);
+}
 
-
+function removeSecondCard() {
+  let dealtHand = document.getElementById('dealerHand');
+  dealtHand.removeChild(dealtHand.childNodes[1]);
+}
 
 
 
@@ -125,12 +137,12 @@ function dealDealer() {
   let dealerDisplay = document.getElementById('dealerTotal');
   let playerDisplay = document.getElementById('playerTotal');
   let surrenderDisplay = document.getElementById('surrended');
-
+  let stopHit = false;
 // Dealer Count
   let dealerCount = 0;
   if (dealer.length > 0) {
     for (let i = 0; i < dealer.length; i++) {
-      if (dealer[i].value === 'ace' && dealer.length > 2) {
+      if (dealer[i].value === 'ace' && dealerCount > 21) {
         dealer[i].points = 1;
         dealerCount += dealer[i].points;
       } else {
@@ -145,7 +157,7 @@ function dealDealer() {
   let playerCount = 0;
   if (player.length > 0) {
     for (let i = 0; i < player.length; i++) {
-      if (player[i].value === 'ace' && player.length > 2) {
+      if (player[i].value === 'ace' && playerCount > 21) {
         player[i].points = 1;
         playerCount += player[i].points;
       } else {
@@ -185,6 +197,7 @@ function dealDealer() {
           gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
           alert('YOU LOSE!');
+          stopHit = true;
           gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount < playerCount) {
           alert('YOU WIN!');
@@ -216,18 +229,18 @@ function dealDealer() {
     }
   console.log('reset function is run');
   console.log(hitCard);
-  console.log(player, dealer);
+  console.log(playerStand);
   }
 
 
 if (playerStand) {
     console.log(playerStand);
-    if (dealerCount < 21) {
+    if (dealerCount <= 21 && stopHit === false) {
         setTimeout(function() {
           console.log('dealer adds a card!');
           dealDealer();
-          compare();
           playerStand = false;
+          compare();
         }, 1000);
      }
   }
@@ -248,7 +261,7 @@ function startDeal() {
       setTimeout(function() {
         dealPlayer();
           setTimeout(function() {
-            dealDealer();
+            secondDealerCard();
             compare();
           }, 800);
       }, 800);
@@ -266,6 +279,8 @@ function hit() {
 
 // Player decides to "stay"
 function stay() {
+  removeSecondCard();
+  dealDealer();
   playerStand = true;
   compare();
   console.log('stay function runs');
