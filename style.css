@@ -256,10 +256,6 @@ button {
   border-radius: 50%;
 }
 
-#surrended {
-  display: none;
-  width: 100px;
-}
 
 h1 {
   font-size: 18pt;
@@ -269,7 +265,7 @@ h1 {
 .money {
   position: absolute;
   bottom: -16%;
-  left: 41%;
+  left: 22%;
   width: 300px;
 }
 
@@ -309,4 +305,33 @@ h1 {
 
 .playerMove {
   display: none;
+}
+
+#winOrLose {
+  height: 150px;
+  width: 350px;
+  position: absolute;
+  bottom: 47%;
+  left: 37%;
+  z-index: 5;
+}
+
+#winOrLose h2 {
+  background-color: red;
+  border-radius: 5%;
+  position: relative;
+  text-align: center;
+  top: 35%;
+  color: yellow;
+  font-size: 45pt;
+  animation: flash 2s linear infinite;
+  display: none;
+}
+
+@keyframes flash {
+  0% { color: #b7e500; font-size: 30pt; }
+  25% { color: #a3cc00; font-size: 35pt; }
+  50% { color: #CCFF00; font-size: 40pt; }
+  75% { color: #7a9900; font-size: 35pt; }
+  100% { color: #8eb200; font-size: 30pt;}
 }

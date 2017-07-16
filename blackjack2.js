@@ -171,29 +171,29 @@ function removeSecondCard() {
 
       setTimeout(function() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
-          alert('PUSH!');
+          push();
           gameReset();
       } else if (playerCount == 21 && dealerCount != 21) {
-          alert('YOU WIN!');
+          youWin();
           gameReset();
       } else if (playerCount > 21) {
-          alert('BUSTED, YOU LOSE!');
+          youBusted();
           gameReset();
       } else if (dealerCount == 17 && dealerCount < playerCount && playerCount <= 21) {
-          alert('YOU WIN!');
+          youWin();
           gameReset();
       } else if (dealerCount == 21 && playerCount <= 21) {
-          alert('YOU LOSE!');
+          youLose();
           gameReset();
       } else if (dealerCount > 21) {
-        alert('YOU WIN!');
+        youWin();
         gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
-          alert('YOU LOSE! this should work everytime');
+          youLose();
           gameReset();
           return;
       } else if (dealerCount < 21 && dealerCount < playerCount && dealerCount >= 17) {
-          alert('YOU WIN!');
+          youWin();
           gameReset();
       // } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
       //     alert('YOU LOSE! this should work everytime');
@@ -291,10 +291,7 @@ function stay() {
   console.log('stay function runs');
 }
 
-
-
-//Betting Functions
-
+//Win or Lose Alerts
 let bet100 = document.getElementById('betBtn1');
 let bet250 = document.getElementById('betBtn2');
 let bet500 = document.getElementById('betBtn3');
@@ -305,32 +302,89 @@ let play = document.getElementsByClassName('playerMove');
 let pot = document.getElementById('pot');
 let startBank = 10000;
 let cashStart = 10000;
+let addedToPot = 0;
+let showWinner = document.getElementById('winOrLostText');
+let youWonAHand = false;
+let youLostAHand = false;
+let pushHand = false;
 
-console.log(play);
+function youWin() {
+  showWinner.style.display = 'block';
+  showWinner.innerText = 'YOU WIN!';
+  setTimeout(function() {
+    showWinner.style.display = 'none';
+    addedToPot = 0;
+    console.log(cashStart);
+    pot.innerText = `POT: $ 0`;
+  }, 3500);
+}
+
+function youLose() {
+  showWinner.style.display = 'block';
+  showWinner.innerText = 'YOU LOSE!';
+  setTimeout(function() {
+    showWinner.style.display = 'none';
+    addedToPot = 0;
+    console.log(cashStart);
+    pot.innerText = `POT: $ 0`;
+  }, 3500);
+}
+
+function youBusted() {
+  showWinner.style.display = 'block';
+  showWinner.innerText = 'BUSTED! YOU LOSE!';
+  setTimeout(function() {
+    showWinner.style.display = 'none';
+    addedToPot = 0;
+    console.log(cashStart);
+    pot.innerText = `POT: $ 0`;
+  }, 3500);
+}
+
+function push() {
+  showWinner.style.display = 'block';
+  showWinner.innerText = 'PUSH!';
+  setTimeout(function() {
+    showWinner.style.display = 'none';
+    addedToPot = 0;
+    console.log(cashStart);
+    pot.innerText = `POT: $ 0`;
+  }, 3500);
+}
+
+//Betting Functions
+
 
 function clickHere() {
   bet100.onclick = function() {
     cashStart = cashStart - 100;
-    bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+    bankroll.innerHTML = `BANKROLL: $ ${cashStart}`;
+    addedToPot += 100;
+    pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet250.onclick = function() {
     cashStart = cashStart - 250;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+    addedToPot += 250;
+    pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet500.onclick = function() {
     cashStart = cashStart - 500;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+    addedToPot += 500;
+    pot.innerText = `POT: $ ${addedToPot}`;
   };
   bet1000.onclick = function() {
     cashStart = cashStart - 1000;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+    addedToPot += 1000;
+    pot.innerText = `POT: $ ${addedToPot}`;
   };
   goBet.onclick = function() {
     for (var i = 0; i < play.length; i++) {
-      play[i].style.display = "block";
+      play[i].style.display = "block"; //display gameplay buttons
     }
-    pot = (startBank - cashStart) * 2;
-    console.log(pot);
+    winningPot = (startBank - cashStart) * 2; //potential winning bet
     startDeal();
   }
 
