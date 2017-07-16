@@ -311,6 +311,8 @@ let pushHand = false;
 function youWin() {
   showWinner.style.display = 'block';
   showWinner.innerText = 'YOU WIN!';
+  cashStart = (addedToPot * 2) + cashStart;
+  bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
@@ -344,6 +346,8 @@ function youBusted() {
 function push() {
   showWinner.style.display = 'block';
   showWinner.innerText = 'PUSH!';
+  cashStart = cashStart + addedToPot;
+  bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
   setTimeout(function() {
     showWinner.style.display = 'none';
     addedToPot = 0;
