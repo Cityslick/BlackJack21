@@ -296,8 +296,13 @@ let bet250 = document.getElementById('betBtn2');
 let bet500 = document.getElementById('betBtn3');
 let bet1000 = document.getElementById('betBtn4');
 let bankroll = document.getElementById('playerChips');
+let goBet = document.getElementById('betBtnGo');
+let play = document.getElementsByClassName('playerMove');
 let pot = document.getElementById('pot');
+let startBank = 10000;
 let cashStart = 10000;
+
+console.log(play);
 
 function clickHere() {
   bet100.onclick = function() {
@@ -316,14 +321,17 @@ function clickHere() {
     cashStart = cashStart - 1000;
     bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
   };
+  goBet.onclick = function() {
+    for (var i = 0; i < play.length; i++) {
+      play[i].style.display = "block";
+    }
+    pot = (startBank - cashStart) * 2;
+    console.log(pot);
+    startDeal();
+  }
 
 }
 
-
-bet100.value = 100;
-bet250.value = 250;
-bet500.value = 500;
-bet1000.value = 1000;
 
 clickHere();
 
