@@ -289,6 +289,44 @@ function stay() {
 
 
 
+//Betting Functions
+
+let bet100 = document.getElementById('betBtn1');
+let bet250 = document.getElementById('betBtn2');
+let bet500 = document.getElementById('betBtn3');
+let bet1000 = document.getElementById('betBtn4');
+let bankroll = document.getElementById('playerChips');
+let pot = document.getElementById('pot');
+let cashStart = 10000;
+
+function clickHere() {
+  bet100.onclick = function() {
+    cashStart = cashStart - 100;
+    bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  };
+  bet250.onclick = function() {
+    cashStart = cashStart - 250;
+    bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  };
+  bet500.onclick = function() {
+    cashStart = cashStart - 500;
+    bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  };
+  bet1000.onclick = function() {
+    cashStart = cashStart - 1000;
+    bankroll.innerHTML = `BANKROLL $ ${cashStart}`;
+  };
+
+}
+
+
+bet100.value = 100;
+bet250.value = 250;
+bet500.value = 500;
+bet1000.value = 1000;
+
+clickHere();
+
 
 
 

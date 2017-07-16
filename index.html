@@ -33,12 +33,24 @@
         <div class="handOfDealer" id="dealerHand"></div>
       </div>
     </div>
-    <button type="button" onclick="startDeal()">DEAL</button>
-    <button type="button" onclick="hit()">HIT</button>
-    <button type="button" onclick="stay()">STAY</button>
-    <button id="surrended" type="button" onclick="surrender()">SURRENDER</button>
+    <button class="playerMove" id="playBtn1" type="button" onclick="hit()">HIT</button>
+    <button class="playerMove" id="playBtn2" type="button" onclick="stay()">STAY</button>
+
+    <div class="betting">
+      <button type="button" id="betBtn1" onclick="clickHere()">Bet $100</button>
+      <button type="button" id="betBtn2" onclick="">Bet $250</button>
+      <button type="button" id="betBtn3" onclick="">Bet $500</button>
+      <button type="button" id="betBtn4" onclick="">Bet $1,000</button>
+      <button type="button" id="betBtn4" onclick="">Bet $1,000</button>
+      <button type="button" id="betBtnGo">GO!</button>
+    </div>
+
     <div class="cardCount"><h1 id="playerTotal"></h1></div><br>
     <div class="cardCount"><h1 id="dealerTotal"></h1></div>
+    <div class="money">
+      <h1 id="playerChips">BANKROLL: $ 10000</h1>
+      <h1 id="pot"></h1>
+    </div>
 
   </div>
 </div>

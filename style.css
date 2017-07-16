@@ -247,10 +247,13 @@ body {
 button {
   background-color: red;
   color: white;
-  height: 50px;
-  width: 60px;
+  height: 70px;
+  width: 80px;
   position: relative;
   left: 78%;
+  font-size: 12pt;
+  margin: 5px;
+  border-radius: 50%;
 }
 
 #surrended {
@@ -261,4 +264,49 @@ button {
 h1 {
   font-size: 18pt;
   color: yellow;
+}
+
+.money {
+  position: absolute;
+  bottom: -16%;
+  left: 41%;
+  width: 300px;
+}
+
+.betting {
+  position: relative;
+  top: 12%;
+  right: 18%;
+  border-radius: 50%;
+}
+
+#betBtn1 {
+  background-color: #0047ab;
+}
+#betBtn2 {
+  background-color: #c40062;
+}
+#betBtn3 {
+  background-color: #4b0082;
+}
+#betBtn4 {
+  background-color: black;
+}
+#betBtnGo {
+  background-color: green;
+  border-radius: 15%;
+}
+
+#playBtn1 {
+  position: absolute;
+  bottom: -2%;
+}
+#playBtn2 {
+  position: absolute;
+  left: 85%;
+  bottom: 8%;
+}
+
+.playerMove {
+  display: none;
 }
