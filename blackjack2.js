@@ -225,9 +225,13 @@ function removeSecondCard() {
           hitCard = false;
           dealingHands = false;
           playerStand = false;
-          surrenderHand = false;
     }
   makeFalse();
+
+  for (var i = 0; i < play.length; i++) {
+      play[i].style.display = "none";
+    }
+
   console.log('reset function is run');
   console.log(hitCard);
   console.log(playerStand);
@@ -236,7 +240,7 @@ function removeSecondCard() {
 
 if (playerStand) {
     console.log(playerStand);
-    if (dealerCount < playerCount) {
+    if (dealerCount < 17) {
         setTimeout(function() {
           console.log('dealer adds a card!');
           dealDealer();
