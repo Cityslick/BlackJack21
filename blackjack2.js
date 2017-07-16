@@ -107,7 +107,20 @@ function dealDealer() {
 }
 
 
-function cardTotals() {
+
+
+
+
+// When player chooses to stand
+// Compare Dealer hand to Player hand when Player "stands"
+
+
+
+
+
+// Compare Dealer hand to Player hand excluding Player "stand"
+  function compare() {
+
 
   let dealerDisplay = document.getElementById('dealerTotal');
   let playerDisplay = document.getElementById('playerTotal');
@@ -142,43 +155,9 @@ function cardTotals() {
   playerDisplay.innerText = `Player Cards Value: ${playerCount}`;
   }
 
-// If player surrenders their hand
-  // if (surrenderHand) {
-  //   alert('YOU LOSE!');
-  //   gameReset();
-  //   surrenderDisplay.style.display = 'none';
-  // }
 
-// Looks for winner on first deal
-  if (dealingHands) {
-    compare();
-  }
+  console.log('compare function is run');
 
-// When player chooses to stand
-// Compare Dealer hand to Player hand when Player "stands"
-  if (playerStand) {
-    if (dealerCount < 17) {
-        setTimeout(function() {
-          console.log('dealer adds a card!');
-          dealDealer();
-          cardTotals();
-        }, 800);
-     } else {
-      compare();
-     }
-
-  }
-
-// When player chooses to hit
-  if (hitCard) {
-      compare();
-      console.log('HIT is TRUE!');
-  }
-
-
-
-// Compare Dealer hand to Player hand excluding Player "stand"
-  function compare() {
       setTimeout(function() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
           alert('PUSH!');
@@ -211,12 +190,13 @@ function cardTotals() {
           alert('YOU WIN!');
           gameReset();
       } else {
+        console.log('no reset, return');
         return;
       }
     }, 800);
-  }
+    console.log(playerCount);
 
-function gameReset() {
+  function gameReset() {
     playerCount = 0;
     dealerCount = 0;
     player = [];
@@ -234,14 +214,34 @@ function gameReset() {
           playerStand = false;
           surrenderHand = false;
     }
+  console.log('reset function is run');
+  console.log(hitCard);
+  console.log(player, dealer);
+  }
+
+
+if (playerStand) {
+    console.log(playerStand);
+    if (dealerCount < 21) {
+        setTimeout(function() {
+          console.log('dealer adds a card!');
+          dealDealer();
+          compare();
+          playerStand = false;
+        }, 1000);
+     }
   }
 
 }
 
 
+
+
+
+
+
 // Deal hand(s) to start game
 function startDeal() {
-  dealingHands = true;
   dealPlayer();
   setTimeout(function() {
     dealDealer();
@@ -249,7 +249,7 @@ function startDeal() {
         dealPlayer();
           setTimeout(function() {
             dealDealer();
-            cardTotals();
+            compare();
           }, 800);
       }, 800);
   }, 800);
@@ -258,23 +258,20 @@ function startDeal() {
 
 // Player decides to take a "hit"
 function hit() {
-  hitCard = true;
   dealPlayer();
-  cardTotals();
+  compare();
+  console.log('hitCard is true');
 }
 
 
 // Player decides to "stay"
 function stay() {
   playerStand = true;
-  cardTotals();
+  compare();
+  console.log('stay function runs');
 }
 
-// // Player surrenders hand
-// function surrender() {
-//   surrenderHand = true;
-//   cardTotals();
-// }
+
 
 
 
