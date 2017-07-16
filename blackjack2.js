@@ -173,7 +173,7 @@ function removeSecondCard() {
       if (dealerCount >= 17 && dealerCount === playerCount) {
           alert('PUSH!');
           gameReset();
-      } else if (playerCount == 21) {
+      } else if (playerCount == 21 && dealerCount != 21) {
           alert('YOU WIN!');
           gameReset();
       } else if (playerCount > 21) {
@@ -188,13 +188,17 @@ function removeSecondCard() {
       } else if (dealerCount > 21) {
         alert('YOU WIN!');
         gameReset();
+      } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
+          alert('YOU LOSE! this should work everytime');
+          gameReset();
+          return;
       } else if (dealerCount < 21 && dealerCount < playerCount && dealerCount >= 17) {
           alert('YOU WIN!');
           gameReset();
-      } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
-          alert('YOU LOSE! this should work everytime');
-
-          gameReset();
+      // } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount > playerCount) {
+      //     alert('YOU LOSE! this should work everytime');
+      //     console.log('hello there!');
+      //     gameReset();
       } else if (dealerCount >= 17 && dealerCount < 21 && dealerCount < playerCount) {
           alert('YOU WIN!');
           gameReset();
@@ -223,6 +227,7 @@ function removeSecondCard() {
           playerStand = false;
           surrenderHand = false;
     }
+  makeFalse();
   console.log('reset function is run');
   console.log(hitCard);
   console.log(playerStand);
@@ -231,11 +236,11 @@ function removeSecondCard() {
 
 if (playerStand) {
     console.log(playerStand);
-    if (dealerCount < 17 ) {
+    if (dealerCount < playerCount) {
         setTimeout(function() {
           console.log('dealer adds a card!');
           dealDealer();
-          playerStand = false;
+          // playerStand = false;
           compare();
         }, 1000);
      }
