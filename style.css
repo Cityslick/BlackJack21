@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bangers|Squada+One');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand|Squada+One');
 
 body {
   margin: 0 auto;
@@ -84,8 +84,6 @@ body {
 }
 
 
-
-
 #logo {
   color: #e5c100;
   font-size: 30pt;
@@ -162,11 +160,11 @@ body {
 
 
 #board_text_one {
-  font-family: 'Bangers', courier;
-  font-size: 60pt;
+  font-family: 'Shrikhand', courier;
+  font-size: 55pt;
   color: #8b0f27;
   position: absolute;
-  left: 35%;
+  left: 33%;
   bottom: 65%;
 }
 #board_text_two {
