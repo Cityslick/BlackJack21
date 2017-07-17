@@ -9,6 +9,8 @@ It's primarily a comparison card game with players competing against the dealer 
 the objective of winning by being the getting 21 points or reaching a higher score
 than the dealer without going over 21 points. 
 
+
+
 ##Wireframe
 
 [image](BlackJack21/BlackJack_Wireframe.png)

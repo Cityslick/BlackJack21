@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Shrikhand|Squada+One');
+@import url('https://fonts.googleapis.com/css?family=Bangers|Squada+One');
 
 body {
   margin: 0 auto;
@@ -162,15 +162,15 @@ body {
 
 
 #board_text_one {
-  font-family: 'Shrikhand', cursive;
-  font-size: 40pt;
+  font-family: 'Bangers', courier;
+  font-size: 60pt;
   color: #8b0f27;
   position: absolute;
-  left: 37%;
+  left: 35%;
   bottom: 65%;
 }
 #board_text_two {
-  font-family: 'Squada One', cursive;
+  font-family: 'Squada One', courier;
   position: absolute;
   font-size: 25pt;
   color: #8b0f27;
@@ -179,7 +179,7 @@ body {
 }
 #dealer_text {
   position: relative;
-  font-family: 'Squada One', cursive;
+  font-family: 'Squada One', courier;
   color: #e5c100;
   font-size: 17pt;
   width: 30%;
@@ -190,7 +190,7 @@ body {
 
 #dealer_text_two {
   position: relative;
-  font-family: 'Squada One', cursive;
+  font-family: 'Squada One', courier;
   font-size: 14pt;
   color: #e5c100;
   width: 30%;
