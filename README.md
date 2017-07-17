@@ -55,3 +55,11 @@ casino chips too.
 For the audio, I signed up for freesounds.org online and picked out a few audio clips from there to add some extras to the game. 
 
 A key piece of code that I used was the Fisher Yates shuffle algorithm that I found online and created my own version of in order for me to properly shuffle and randomize the card deck. 
+
+##Unsolved Problems
+
+This is not a perfectly working BlackJack game as I did find some bugs. One occurs on counting Aces as 1 or 11's and another occurs when mistakingly pressing a button twice which throws off the entire game causing the user to refresh the page. Another issue that had occured was the dealer taking too many cards when the player "stayed" on a hand. 
+
+It seems as if that error is not happening as often anymore but throughout the coding of this game, many times I would fix one thing and something else would break. I relentlessly stayed on top of the debugger in the developer tools but I could not really find a workable solution in the time we had before the submission deadline. 
+
+I definitely want to improve on this game by refactoring most of the code into methods in objects. I also want to improve the logic to add addittional options for the player including "split", "insurance", etc.
